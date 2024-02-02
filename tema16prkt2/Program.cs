@@ -25,15 +25,21 @@ namespace tema16prkt2
             }
             Console.WriteLine($"{time.ToString("dddd, d MMMM yyyy")}");
 
-            DateTime date = DateTime.Now;
-            Console.WriteLine($"{date.Year - date.Month - time.Year}");
+            
+            
+            int age = DateTime.Now.Year - time.Year;
+            if (DateTime.Now < time.AddYears(age)) age--;
+            Console.WriteLine($"Полный лет - {age}");
 
+            ///сколько дней осталось от сегодняшней даты до вашего ближайшего дня рождения (если день рождения сегодня, то вывести 0)         
 
-            //Console.WriteLine($"\nРазница между датами в {date.Subtract(time)} дней\n");
-
-
-
-
+            DateTime nextBirthday = new DateTime(DateTime.Now.Year, time.Month, time.Day);
+            if(nextBirthday<DateTime.Now)
+            {
+                nextBirthday = nextBirthday.AddYears(1);
+            }
+            int days = (nextBirthday - DateTime.Now).Days;
+            WriteLine($"Дней до ближайшего дня рождения - {days}");
 
             Console.ReadKey();
         }
